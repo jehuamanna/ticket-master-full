@@ -95,6 +95,7 @@ class TicketMaster extends React.Component {
                 let searchArray = prevState.originalTickets
                 return {
                     tickets: searchArray.filter(function (ticket) {
+                        console.log("ticket", ticket)
                         return ticket.priority == sortValue && ticket.ticket_code.toLowerCase().includes(searchValue.toLowerCase())
                     })
                 }

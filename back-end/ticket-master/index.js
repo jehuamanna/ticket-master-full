@@ -2,7 +2,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 const port = 3001
 const app = express()
-
+var cors = require('cors')
+app.use(cors())
 app.use(express.json())
 
 mongoose.Promise = global.Promise
@@ -77,6 +78,23 @@ app.post('/tickets', function(req, res){
 })
 
 
+
+
+app.put('/tickets/:id', function(req, res){
+	const id = req.params.id
+	const body = req.body
+	Ticket.findByIdAndUpdate(id, body, function(err, body){
+        if(err){
+            res.send(err)
+        }
+    }).then((body) =>{
+        res.send(body)
+    }).catch((err) => {
+        res.send(err)
+    })
+		
+	
+})
 
 app.listen(port, function(){
     console.log("Listening to port ", port)
